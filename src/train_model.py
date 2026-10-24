@@ -43,7 +43,7 @@ def train_model():
     # Guardar el modelo comprimido
     joblib.dump(pipe, 'models/model_v1.pkl', compress=3)
 
-    # 7. Guardar métricas e hiperparámetros en JSON
+    # Guardar métricas e hiperparámetros en JSON
     metrics_data = {
         "model_version": "v1",
         "seed": SEED,

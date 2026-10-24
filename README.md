@@ -17,6 +17,10 @@ El proyecto fue desarrollado utilizando **Python 3.15.1**
    `pip install -r requirements.txt`
 
 
+### Opcional
+Si deseas volver a descargar los datos originales desde cero, puedes ejecutar `python src/download_data.py`
+
+
 ## Estructura del Proyecto
 - `data/`: Contiene los datos crudos, los procesados y el registro de transformaciones.
 - `src/`: Scripts de código fuente para preprocesamiento y entrenamiento.
@@ -24,11 +28,13 @@ El proyecto fue desarrollado utilizando **Python 3.15.1**
 - `models/`: Modelos entrenados serializados.
 
 
-## Opcional
-Si deseas volver a descargar los datos originales desde cero, puedes ejecutar `python src/download_data.py`
-
-
 ### Preprocesamiento de Datos
-Para generar el dataset limpio y registrar las transformaciones, ejecutar desde la carpeta `src/`:
-`python preprocess.py`
+Para generar el dataset limpio y registrar las transformaciones, ejecuta desde la raíz del proyecto:
+`python src/preprocess.py`
 Esto tomará los datos de `data/raw/abalone_raw.csv` y generará `data/processed/abalone_clean.csv` junto con `data/data_log.json`.
+
+
+### Entrenamiento y Evaluación del Modelo
+Para entrenar el modelo predictivo (RandomForest) utilizando el dataset limpio, ejecuta:
+`python src/train_model.py`
+Esto ajustará un Pipeline con escalado, guardará el modelo entrenado en la carpeta `models/` y registrará las métricas en la carpeta `results/`.
