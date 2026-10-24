@@ -1,0 +1,14 @@
+{
+    "model_version": "v1",
+    "seed": 42,
+    "hyperparameters": {
+        "n_estimators": 100,
+        "max_depth": 10,
+        "algorithm": "RandomForestRegressor"
+    },
+    "metrics": {
+        "MAE": 1.5357,
+        "RMSE": 2.2269,
+        "R2": 0.5862
+    }
+}
