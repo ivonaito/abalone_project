@@ -9,6 +9,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.tree import DecisionTreeRegressor
 
 def train_model():
     # Asegurar que las carpetas existan
@@ -27,30 +28,30 @@ def train_model():
     SEED = 42
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=SEED)
 
-    # Crear el Pipeline y entrenar
+
+   # 4. Crear el Pipeline (Escalado + Modelo) y entrenar
     pipe = Pipeline([
         ('scaler', StandardScaler()),
-        ('model', RandomForestRegressor(n_estimators=200, max_depth=10, random_state=SEED))
+        ('model', DecisionTreeRegressor(max_depth=5, random_state=SEED))
     ])
     pipe.fit(X_train, y_train)
 
-    # Evaluar el modelo
+     # 5. Evaluar el modelo
     y_pred = pipe.predict(X_test)
     mae = mean_absolute_error(y_test, y_pred)
     rmse = mean_squared_error(y_test, y_pred) ** 0.5
     r2 = r2_score(y_test, y_pred)
 
-    # Guardar el modelo comprimido
-    joblib.dump(pipe, 'models/model_v1.pkl', compress=3)
+    # 6. Guardar el modelo comprimido
+    joblib.dump(pipe, 'models/model_v3.pkl', compress=3)
 
-    # Guardar métricas e hiperparámetros en JSON
+    # 7. Guardar métricas e hiperparámetros en JSON
     metrics_data = {
-        "model_version": "v1",
+        "model_version": "v3",
         "seed": SEED,
         "hyperparameters": {
-            "n_estimators": 100,
-            "max_depth": 10,
-            "algorithm": "RandomForestRegressor"
+            "max_depth": 5,
+            "algorithm": "DecisionTreeRegressor"
         },
         "metrics": {
             "MAE": round(mae, 4),
@@ -58,7 +59,7 @@ def train_model():
             "R2": round(r2, 4)
         }
     }
-    with open('results/metrics_v1.json', 'w') as f:
+    with open('results/metrics_v3.json', 'w') as f:
         json.dump(metrics_data, f, indent=4)
 
     # Registrar ejecución en el log CSV
@@ -73,7 +74,7 @@ def train_model():
         exp_id = f"exp_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
         date_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         writer.writerow([
-            exp_id, date_time, "v1", 
+            exp_id, date_time, "v3", 
             str(metrics_data['hyperparameters']), 
             round(mae, 4), round(rmse, 4), round(r2, 4)
         ])
