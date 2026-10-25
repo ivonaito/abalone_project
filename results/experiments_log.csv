@@ -1,1 +1,2 @@
 exp_20261024_144254,2026-10-24 14:42:54,v1,"{'n_estimators': 100, 'max_depth': 10, 'algorithm': 'RandomForestRegressor'}",1.5357,2.2269,0.5862
+exp_20261025_122608,2026-10-25 12:26:08,v2,"{'n_estimators': 200, 'max_depth': 5, 'algorithm': 'RandomForestRegressor'}",1.5656,2.2536,0.5762
