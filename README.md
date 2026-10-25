@@ -38,3 +38,8 @@ Esto tomará los datos de `data/raw/abalone_raw.csv` y generará `data/processed
 Para entrenar el modelo predictivo (RandomForest) utilizando el dataset limpio, ejecuta:
 `python src/train_model.py`
 Esto ajustará un Pipeline con escalado, guardará el modelo entrenado en la carpeta `models/` y registrará las métricas en la carpeta `results/`.
+
+
+## Resultados
+- **v2 (RandomForest optimizado):** Mejora en hiperparámetros (n_estimators=200, max_depth=5).
+- **v3 (DecisionTree):** Prueba con un algoritmo de árbol de decisión simple.
